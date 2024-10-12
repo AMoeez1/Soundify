@@ -47,7 +47,8 @@
         <hr>
         <p class="text-center py-4 font-semibold">OR</p>
         <hr>
-        <form class="my-8">
+        <form class="my-8" method="POST" action="{{route('register')}}">
+            @csrf
             <div class="py-2">
                 <x-bladewind::input name='name' label='Full name' required='true' />
             </div>
@@ -61,7 +62,7 @@
                 <x-bladewind::input name='password' label='Password' required='true' />
             </div>
             <a href="#" class="flex justify-end text-blue-600 hover:underline mb-4">Forgot Password?</a>
-            <x-bladewind::button class="w-full">Login</x-bladewind::button>
+            <x-bladewind::button class="w-full" can_submit='true'>Login</x-bladewind::button>
         </form>
 
         <p class="text-gray-400">Already Registered?</p>
