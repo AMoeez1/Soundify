@@ -39,7 +39,7 @@
                 <a href="#" class="text-gray-600 hover:text-blue-500">Blog</a>
                 <a href="#" class="text-gray-600 hover:text-blue-500">Contact Us</a>
             </nav>
-            <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Try it Free</button>
+            <a href="/register" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Try it Free</a>
         </div>
     </header>
 

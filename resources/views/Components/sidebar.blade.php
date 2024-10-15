@@ -77,6 +77,18 @@
             </div>
           </div>
         </a>
+
+        <a href="#" class="text-gary-400 group relative rounded-xl p-2 hover:bg-gray-50">
+          <i class="fa fa-plus-square-o text-xl text-gray-500"></i>
+          <div class="absolute inset-y-0 left-12 hidden items-center group-hover:flex">
+            <div class="relative whitespace-nowrap rounded-md bg-white px-4 py-2 text-sm font-semibold text-gray-900 drop-shadow-lg">
+              <div class="absolute inset-0 -left-1 flex items-center">
+                <div class="h-2 w-2 rotate-45 bg-white"></div>
+              </div>
+              Add Music <span class="text-gray-400">(Y)</span>
+            </div>
+          </div>
+        </a>
       </nav>
       <i class="fa fa-ellipsis-h mt-4"></i>
       <div class="flex flex-col items-center gap-y-4 py-10">
