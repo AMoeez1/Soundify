@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class AuthController extends Controller
 {
@@ -53,6 +54,44 @@ class AuthController extends Controller
             }
         } else {
             return back()->withErrors(['Error' => 'Credentials Wrong']);
+        }
+    }
+
+    public function showEdit(){
+        return view('edit_profile');
+    }
+
+    public function editProfile(Request $request){
+        $user = Auth::user();
+        $request->validate([
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required|email',
+            'profile' => 'nullable|mimes:jpg,webp,png,jpeg',
+            'banner' => 'nullable|mimes:jpg,webp,png,jpeg',
+            'about' => 'nullable',
+        ]);
+        if($user){
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->about = $request->about;
+            if($request->hasFile('profile')){
+                if($user->profile){
+                    Storage::disk('public')->delete($user->profile);
+                }
+                $user->profile = $request->file('profile')->store('users/profile', 'public');
+            }
+            if($request->hasFile('banner')){
+                if($user->banner){
+                    Storage::disk('public')->delete($user->banner);
+                }
+                $user->banner = $request->file('banner')->store('user/banner', 'public');
+            }
+            $user->save();
+            return redirect()->route('profile');
+        } else {
+            return back()->withErrors(['Error' => 'No User Found']);
         }
     }
 }

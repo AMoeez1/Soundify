@@ -44,6 +44,7 @@
         <p class="text-center py-4 font-semibold">OR</p>
         <hr>
         <form class="my-8" method="POST" method="{{route('login')}}">
+            @csrf
             <div class="py-2">
                 <x-bladewind::input name='email' label='Email' required='true' />
             </div>

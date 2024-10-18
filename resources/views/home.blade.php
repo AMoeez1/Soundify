@@ -1,4 +1,5 @@
 @extends('Layout.pages')
+@section('title', 'Home')
 @section('content')
 <div class="flex justify-center h-80 bg-gradient-to-b from-red-400 via-gray-400 to-transparent">
     <div class="flex items-center my-8 w-3/4 bg-blue-500 p-1 rounded-lg shadow-lg h-fit">
@@ -7,6 +8,7 @@
     </div>
 </div>
 <main class="ml-6">
+    @include('components.subscription')
     <div class="">
         <h3 class="uppercase text-gray-400">Listen to top</h3>
         <h1 class="text-3xl font-semibold">Top <span class="text-blue-500">Charts</span></h1>

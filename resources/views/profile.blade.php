@@ -1,106 +1,43 @@
-@extends('layout.pages')
 @php
     $user = Auth::user();
 @endphp
+@extends('layout.pages')
+@section('title', 'Profile - ' . $user->username)
 
 <style>
-    .bg{
-        background-image: url('https://tse4.mm.bing.net/th?id=OIP.01eF6jgwZJhZx2gmbb0r9AHaCq&pid=Api&P=0&h=220'); 
+    .bg {
+        background-image: url('{{asset("storage/" . $user->banner)}}');
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
+
+    .bw-button.outlined.flex {
+        padding-bottom: .2rem !important;
+        padding-top: .2rem !important;
+    }
 </style>
 @section('content')
-<div class="h-80 flex items-center bg">
-    <div class="inline pl-8">
-        <h3 class="text-gray-100 font-semibold text-xl px-4">Verified Artist</h3>
-        <h1 class="text-8xl font-semibold px-4 text-white font-serif">{{$user->name}}</h1>
-    </div>
-</div>
-<main class="ml-6">
-{{-- <form action="">
-    @csrf
-    <x-bladewind::input label='name'>
-</form> --}}
-    
-
-    <div class="md:mx-20 p-8">
-        <h1 class="text-2xl text-center font-semibold">Currently you have no plan!<span class="text-blue-500"></span></h1>
-        <div class="grid grid-cols-12 w-full md:border-2 md:p-8 p-0">
-            <div class="bg-white rounded-lg p-6 col-span-12 md:col-span-4 ">
-                <h2 class="text-2xl font-bold mb-2">Free Trial</h2>
-                <p class="mb-4">
-                    Get 30 days Free Trial subscription plan to experience awesome
-                    music.
-                </p>
-                <a href="" class="text-blue-500">
-                    Get Free Trial 
-                    <i class="fa fa-arrow-right "></i>
-                </a>
-                <img src="https://listen-next-two.vercel.app/_next/image?url=%2Fimages%2Fmisc%2Fplan.png&w=384&q=75"
-                    alt="Music lover " class="mt-4" style="height: 280px;" />
-            </div>
-            <div class="flex col-span-12 md:col-span-3 items-center">
-                <div class="bg-gray-50 rounded-lg shadow-md w-full p-6">
-                    <h2 class="text-2xl font-semibold my-2"><i class="fa fa-music"></i> Free <span
-                            class="text-blue-600">Trial</span></h2>
-                    <p class="text-gray-300">What you'll get</p>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>All
-                            free songs and app features</li>
-                    </ul>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>No
-                            Ads between songs</li>
-                    </ul>
-                    <div class="mt-4 md:mt-44">
-                        <h4 class="text-2xl font-bold">$0.00<span class="text-sm font-thin">/3 months</span></h4>
-                        <x-bladewind::button class="w-full mt-4">Start Free Trial</x-bladewind::button>
-
-                    </div>
-                </div>
-            </div>
-            <div class="flex col-span-12 md:col-span-3 items-center">
-                <div class="bg-gray-50 rounded-lg shadow-md w-full p-6">
-                    <h2 class="text-2xl font-semibold my-2"><i class="fa fa-music"></i> Premium</h2>
-                    <p class="text-gray-300">What you'll get</p>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>All
-                            free songs and app features</li>
-                    </ul>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>No
-                            Ads between songs</li>
-                    </ul>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>Create
-                            playlist & access analytics
-                        </li>
-                    </ul>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>Listen
-                            paid song once & purchase
-                        </li>
-                    </ul>
-                    <ul class="text-sm text-gray-400 my-4 fa-ul flex items-center">
-                        <li><span class="fa-li"><i
-                                    class="fa fa-check text-white text-xs bg-blue-500 rounded-full px-1 py-0.5"></i></span>Download
-                            and listen offline
-                        </li>
-                    </ul>
-                    <div class="mt-4 md:mt-16">
-                        <h4 class="text-2xl font-bold">$10.99<span class="text-sm font-thin">/year</span></h4>
-                        <x-bladewind::button class="w-full mt-4">Start with this</x-bladewind::button>
-                    </div>
-                </div>
-            </div>
+    <div class="h-80 flex items-center bg">
+        <div class="inline pl-8">
+            <h3 class="text-gray-100 font-semibold text-xl px-4 cursor-pointer">Verified Artist <i
+                    class="fa fa-check text-xs bg-blue-500 p-1 rounded-full"></i></h3>
+            <h1 class="text-7xl font-semibold px-4 text-white font-serif">{{ $user->name }}</h1>
         </div>
     </div>
-</main>
+
+    <div class="p-4 flex items-center gap-8">
+        <div
+            class="p-4 bg-gray-500 hover:bg-gray-600 pl-5 border-2 shadow-lg rounded-full w-16 h-16 flex items-center justify-center cursor-pointer">
+            <i class="fa fa-play text-2xl text-white"></i>
+        </div>
+        <x-bladewind::button color='gray' outline='true'>Follow</x-bladewind::button>
+        <a href="{{ url('/edit/profile') }}"
+            class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
+            dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
+            <i class="fa fa-edit text-lg px-1"></i>Edit Profile</a>
+        <a href="{{ url('/edit/profile') }}"
+            class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
+            dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
+            <i class="fa fa-plus text-lg px-1" style="font-size:15px;"></i> Add Song</a>
+    </div>
 @endsection
