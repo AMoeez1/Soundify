@@ -24,7 +24,8 @@ Route::middleware([ValidUser::class])->group(function () {
     })->name('profile');
     Route::get('/edit/profile', [AuthController::class, 'showEdit'])->name('edit_profile');
     Route::post('/edit/profile', [AuthController::class, 'editProfile'])->name('editProfile');
-    Route::get('/add/song', [SongController::class, 'showSong'])->name('add_song');
+    Route::get('/add/song', [SongController::class, 'showSong'])->name('show_song');
+    Route::post('/add/song', [SongController::class, 'addSong'])->name('add_song');
 });
 Route::middleware([AuthUser::class])->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister']);

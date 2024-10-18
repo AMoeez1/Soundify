@@ -86,7 +86,7 @@ class AuthController extends Controller
                 if($user->banner){
                     Storage::disk('public')->delete($user->banner);
                 }
-                $user->banner = $request->file('banner')->store('user/banner', 'public');
+                $user->banner = $request->file('banner')->store('users/banner', 'public');
             }
             $user->save();
             return redirect()->route('profile');

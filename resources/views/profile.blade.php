@@ -6,7 +6,7 @@
 
 <style>
     .bg {
-        background-image: url('{{asset("storage/" . $user->banner)}}');
+        background-image: url('{{ asset('storage/' . $user->banner) }}');
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
@@ -24,7 +24,13 @@
             <h1 class="text-7xl font-semibold px-4 text-white font-serif">{{ $user->name }}</h1>
         </div>
     </div>
-
+    @if (session('Res'))
+        <div class="flex justify-center transition-opacity duration-500 opacity-100" id="alert">
+            <x-bladewind::alert type="success" size='tiny' class=" w-80">
+                {{ session('Res') }}
+            </x-bladewind::alert>
+        </div>
+    @endif
     <div class="p-4 flex items-center gap-8">
         <div
             class="p-4 bg-gray-500 hover:bg-gray-600 pl-5 border-2 shadow-lg rounded-full w-16 h-16 flex items-center justify-center cursor-pointer">
@@ -35,7 +41,7 @@
             class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
             dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
             <i class="fa fa-edit text-lg px-1"></i>Edit Profile</a>
-        <a href="{{ url('/edit/profile') }}"
+        <a href="{{ url('/add/song') }}"
             class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
             dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
             <i class="fa fa-plus text-lg px-1" style="font-size:15px;"></i> Add Song</a>

@@ -19,13 +19,14 @@ class Song extends Model
         'feat_artist_name',
         'part_of',
         'cover',
+        'audio'
     ];
 
     protected $keyType = 'string';
     public $incrementing = 'false';
 
     protected static function booted(){
-        static::createing(function($song) {
+        static::creating(function($song) {
             $song->id = Str::uuid();
         });
     }

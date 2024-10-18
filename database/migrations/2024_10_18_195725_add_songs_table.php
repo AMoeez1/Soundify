@@ -17,9 +17,10 @@ return new class extends Migration
             $table->foreignId('artist_id')->constrained('users')->onDelete('cascade');
             $table->string('artist_name');
             $table->foreignId('feat_artist_id')->nullable()->constrained('users')->onDelete('set null');
-            $table->string('feat_artist_name')->nullable();
             $table->enum('part_of',['album','ep','lp','mixtape','single'])->default('single');
+            $table->string('from')->nullable();
             $table->string('cover');
+            $table->String('audio');
             $table->timestamps();
         });
     }
