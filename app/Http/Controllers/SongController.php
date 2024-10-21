@@ -38,7 +38,6 @@ class SongController extends Controller
         ]);
 
         if($song){
-
             return redirect()->route('profile')->with('Res', 'Song added successfully');
         } else {
             return back();
@@ -46,6 +45,6 @@ class SongController extends Controller
     } 
 
     public function showEditSong($id){
-        
+
     }
 }

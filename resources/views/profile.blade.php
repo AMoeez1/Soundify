@@ -50,6 +50,7 @@
         <div class="p-4 ml-4">
             <h2 class="text-2xl font-bold text-primary">Top Songs</h2>
             <ul class="mt-4 space-y-4">
+                
                 @foreach ($songs as $song)
                     <li class="flex items-center justify-between p-2 border-b hover:bg-gray-100 cursor-pointer"
                         onclick="playAudio('{{asset('storage/'. $song->audio)}}')">
@@ -77,13 +78,5 @@
         </div>
     </div>
 
-    <script>
-         function playAudio(audioSrc) {
-            const audioPlayer = document.getElementById('audioPlayer');
-            audioPlayer.src = audioSrc;
-            audioPlayer.play().catch(error => {
-                console.error('Error playing audio:', error);
-            });
-        }
-    </script>
+
 @endsection

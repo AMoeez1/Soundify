@@ -42,6 +42,11 @@
         </div>
         <div class="w-full ml-20 overflow-x-hidden h-screen">
             @yield('content')
+            <div class="flex justify-center">
+                <div class="fixed w-2/3" style="top:85vh">
+                    @include('Components.player')
+                </div>  
+            </div>
         </div>
     </div>
 </body>
