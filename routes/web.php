@@ -19,13 +19,12 @@ Route::get('/', function () {
 
 
 Route::middleware([ValidUser::class])->group(function () {
-    Route::get('/profile', function () {
-        return view('profile');
-    })->name('profile');
+    Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
     Route::get('/edit/profile', [AuthController::class, 'showEdit'])->name('edit_profile');
     Route::post('/edit/profile', [AuthController::class, 'editProfile'])->name('editProfile');
     Route::get('/add/song', [SongController::class, 'showSong'])->name('show_song');
     Route::post('/add/song', [SongController::class, 'addSong'])->name('add_song');
+    Route::get('/{username}/edit/song/{id}', [SongController::class,'showEditSong']);
 });
 Route::middleware([AuthUser::class])->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister']);

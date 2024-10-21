@@ -19,7 +19,9 @@ class Song extends Model
         'feat_artist_name',
         'part_of',
         'cover',
-        'audio'
+        'audio',
+        'writer',
+        'music',
     ];
 
     protected $keyType = 'string';

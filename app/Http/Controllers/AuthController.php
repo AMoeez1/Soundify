@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Song;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -55,6 +56,12 @@ class AuthController extends Controller
         } else {
             return back()->withErrors(['Error' => 'Credentials Wrong']);
         }
+    }
+
+    public function profile(){
+        $user = Auth::id();
+        $songs = Song::where('artist_id', $user)->get();
+        return view('profile', ['songs' => $songs]);
     }
 
     public function showEdit(){
