@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PagesRoutesController;
 use App\Http\Controllers\SongController;
 use App\Http\Middleware\AuthUser;
 use App\Http\Middleware\ValidUser;
@@ -9,14 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 
 // Public Routes
-Route::get('/', function () {
-    if (Auth::check()) {
-        return view('home');
-    } else {
-        return view('guest.home');
-    }
-})->name('home');
-
+Route::get('/',[PagesRoutesController::class,'home'])->name('home');
 
 Route::middleware([ValidUser::class])->group(function () {
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
@@ -25,6 +19,7 @@ Route::middleware([ValidUser::class])->group(function () {
     Route::get('/add/song', [SongController::class, 'showSong'])->name('show_song');
     Route::post('/add/song', [SongController::class, 'addSong'])->name('add_song');
     Route::get('/{username}/edit/song/{id}', [SongController::class,'showEditSong']);
+    Route::get('/{username}', [PagesRoutesController::class, 'other_profile'])->name('other_profile');
 });
 Route::middleware([AuthUser::class])->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister']);

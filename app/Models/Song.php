@@ -32,4 +32,8 @@ class Song extends Model
             $song->id = Str::uuid();
         });
     }
+
+    public function artist(){
+        return $this->belongsTo(User::class, 'artist_id');
+    }
 }

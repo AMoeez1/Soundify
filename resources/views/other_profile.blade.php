@@ -1,6 +1,4 @@
-@php
-    $user = Auth::user();
-@endphp
+
 @extends('layout.pages')
 @section('title', 'Profile - ' . $user->username)
 
@@ -32,28 +30,19 @@
         </div>
     @endif
     <div class="p-4 flex items-center gap-8">
-        {{-- <div
+        <div
             class="p-4 bg-gray-500 hover:bg-gray-600 pl-5 border-2 shadow-lg rounded-full w-16 h-16 flex items-center justify-center cursor-pointer">
             <i class="fa fa-play text-2xl text-white"></i>
         </div>
-        <x-bladewind::button color='gray' outline='true'>Follow</x-bladewind::button> --}}
-        <a href="{{ url('/edit/profile') }}"
-            class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
-            dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
-            <i class="fa fa-edit text-lg px-1"></i>Edit Profile</a>
-        <a href="{{ url('/add/song') }}"
-            class="bw-button flex items-center uppercase regular primary border-gray-500/50 focus:ring-gray-500 hover:border-gray-600
-            dark:hover:border-gray-500 active:border-gray-600 text-gray-600 focus:ring border-2 cursor-pointer rounded-md outlined border-2">
-            <i class="fa fa-plus text-lg px-1" style="font-size:15px;"></i> Add Song</a>
+        <x-bladewind::button color='gray' outline='true'>Follow</x-bladewind::button>
     </div>
     <div class="bg-gray-50">
         <div class="p-4 ml-4">
-            <h2 class="text-2xl font-bold text-primary">Top Songs</h2>
+            <h2 class="text-2xl font-bold text-primary">Top Songs {{$user->id}}</h2>
             <ul class="mt-4 space-y-4">
 
-                @foreach ($songs as $song)
+                {{-- @foreach ($songs as $song)
                     <li class="flex items-center justify-between p-2 border-b hover:bg-gray-100 cursor-pointer"
-                        {{-- onclick="playAudio('{{asset('storage/'. $song->audio)}}')"> --}}
                         onclick="playAudio('{{ asset('storage/' . $song->audio) }}', '{{ $song->song_name }}', '{{ $song->artist_name }}', '{{ asset('storage/' . $song->cover) }}')">
                         <div class="flex items-center">
                             <img src="{{ asset('storage/' . $song->cover) }}"
@@ -70,7 +59,7 @@
                             </a>
                         </div>
                     </li>
-                @endforeach
+                @endforeach --}}
             </ul>
             <audio id="audioPlayer" controls style="display: none;">
                 <source id="audioSource" src="" type="audio/mpeg">
