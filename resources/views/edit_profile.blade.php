@@ -13,7 +13,7 @@
     }
 </style>
 @section('content')
-    <form action="{{ route('editProfile') }}" class="{{$user->banner ? 'bg' : 'bg-gradient-to-b from-orange-600 via-red-500 to-purple-400'}}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('editProfile') }}" class="{{$user->banner ? 'bg' : 'bg-gradient-to-b from-orange-600 via-red-500 to-purple-400 h-80'}}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="flex justify-end mr-8 py-3 cursor-pointer">
             <button type="button" onclick="showModal('no-cancel')">

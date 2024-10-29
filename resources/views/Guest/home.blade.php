@@ -25,6 +25,12 @@
 </head>
 
 <body class="bg-gray-50 min-h-screen font-sans">
+
+@if($errors->any())
+    <div>
+        {{ $errors }}
+    </div>
+@endif
     <header class="bg-white shadow-md py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-4">

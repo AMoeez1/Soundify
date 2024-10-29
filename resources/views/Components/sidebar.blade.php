@@ -99,8 +99,12 @@
             </a>
         </nav>
         <i class="fa fa-ellipsis-h mt-4"></i>
-        <div class="flex flex-col items-center gap-y-4 py-10">
+        {{-- <div class="flex flex-col items-center gap-y-4 py-10">
+        </div> --}}
+        <form method='post' action='{{route('logout')}}' class="flex flex-col items-center gap-y-4 py-10">
+        @csrf
             <a href="/profile">Profile</a>
-        </div>
+            <x-bladewind::button can_submit='true' outline='true' color='gray' >Logout</x-bladewind::button>
+        </form>
     </aside>
 </div>

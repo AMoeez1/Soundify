@@ -6,7 +6,8 @@
 
 <style>
     .bg {
-        background-image: url('{{ asset('storage/' . $user->banner) }}');
+        /* background-image: url('{{$user->banner ? asset('storage/' . $user->banner) : "https://img.freepik.com/free-vector/black-banner-with-yellow-geometric-shapes_1017-32327.jpg?t=st=1730146103~exp=1730149703~hmac=582d74cd44b7fa4ab69aedf3f88f81e57aa51d904ee1bf9c5405a1861145bd39&w=1060"}}'); */
+        background-image: url('{{asset('storage/' . $user->banner)}}');
         background-repeat: no-repeat;
         background-size: 100% 100%;
     }
@@ -17,6 +18,7 @@
     }
 </style>
 @section('content')
+<div class="{{$user->banner ? 'bg' : 'bg-gradient-to-b from-orange-600 via-red-500 to-purple-400 h-80'}}">
     <div class="h-80 flex items-center bg">
         <div class="inline pl-8">
             <h3 class="text-gray-100 font-semibold text-xl px-4 cursor-pointer">Verified Artist <i
@@ -50,7 +52,7 @@
         <div class="p-4 ml-4">
             <h2 class="text-2xl font-bold text-primary">Top Songs</h2>
             <ul class="mt-4 space-y-4">
-
+            @if($songs->count())
                 @foreach ($songs as $song)
                     <li class="flex items-center justify-between p-2 border-b hover:bg-gray-100 cursor-pointer"
                         {{-- onclick="playAudio('{{asset('storage/'. $song->audio)}}')"> --}}
@@ -71,6 +73,10 @@
                         </div>
                     </li>
                 @endforeach
+                @else
+                <x-bladewind::empty-state message="You have not released any song yet!" heading="No Released song"
+                    button_label="Create Gist" onclick="alert('you clicked me')"></x-bladewind::empty-state>
+            @endif
             </ul>
             <audio id="audioPlayer" controls style="display: none;">
                 <source id="audioSource" src="" type="audio/mpeg">
@@ -78,6 +84,7 @@
             </audio>
         </div>
     </div>
+</div>
 
 
 @endsection

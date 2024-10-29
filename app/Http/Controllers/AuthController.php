@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class AuthController extends Controller
 {
     public function showRegister(){
-        return view('Auth.register');
+        return view('Auth.register');    
     }
 
     public function register(Request $request){
@@ -100,5 +100,10 @@ class AuthController extends Controller
         } else {
             return back()->withErrors(['Error' => 'No User Found']);
         }
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('home');
     }
 }

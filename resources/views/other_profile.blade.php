@@ -1,6 +1,6 @@
 
 @extends('layout.pages')
-@section('title', 'Profile - ' . $user->username)
+@section('title', $user->username . ' - Profile')
 
 <style>
     .bg {
@@ -15,10 +15,11 @@
     }
 </style>
 @section('content')
+<div class="{{$user->banner ? 'bg' : 'bg-gradient-to-b from-orange-600 via-red-500 to-purple-400 h-80'}}">
     <div class="h-80 flex items-center bg">
         <div class="inline pl-8">
-            <h3 class="text-gray-100 font-semibold text-xl px-4 cursor-pointer">Verified Artist <i
-                    class="fa fa-check text-xs bg-blue-500 p-1 rounded-full"></i></h3>
+            {{-- <h3 class="text-gray-100 font-semibold text-xl px-4 cursor-pointer">Verified Artist <i
+                    class="fa fa-check text-xs bg-blue-500 p-1 rounded-full"></i></h3> --}}
             <h1 class="text-7xl font-semibold px-4 text-white font-serif">{{ $user->name }}</h1>
         </div>
     </div>
@@ -29,6 +30,7 @@
             </x-bladewind::alert>
         </div>
     @endif
+</div>
     <div class="p-4 flex items-center gap-8">
         <div
             class="p-4 bg-gray-500 hover:bg-gray-600 pl-5 border-2 shadow-lg rounded-full w-16 h-16 flex items-center justify-center cursor-pointer">
@@ -38,10 +40,10 @@
     </div>
     <div class="bg-gray-50">
         <div class="p-4 ml-4">
-            <h2 class="text-2xl font-bold text-primary">Top Songs {{$user->id}}</h2>
             <ul class="mt-4 space-y-4">
-
-                {{-- @foreach ($songs as $song)
+                @if($songs->count())
+            <h2 class="text-2xl font-bold text-primary">Top Songs</h2>
+                @foreach ($songs as $song)
                     <li class="flex items-center justify-between p-2 border-b hover:bg-gray-100 cursor-pointer"
                         onclick="playAudio('{{ asset('storage/' . $song->audio) }}', '{{ $song->song_name }}', '{{ $song->artist_name }}', '{{ asset('storage/' . $song->cover) }}')">
                         <div class="flex items-center">
@@ -59,7 +61,11 @@
                             </a>
                         </div>
                     </li>
-                @endforeach --}}
+                @endforeach
+                @else
+                    <x-bladewind::empty-state message="{{$user->name}} has not released any song yet!" heading="No Released song"
+                    button_label="Create Gist" onclick="alert('you clicked me')"></x-bladewind::empty-state>
+                @endif
             </ul>
             <audio id="audioPlayer" controls style="display: none;">
                 <source id="audioSource" src="" type="audio/mpeg">
@@ -67,6 +73,5 @@
             </audio>
         </div>
     </div>
-
 
 @endsection

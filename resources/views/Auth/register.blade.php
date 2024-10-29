@@ -58,7 +58,8 @@
                 <x-bladewind::input name='email' label='Email' required='true' />
             </div>
             <div class="pt-2">
-                <x-bladewind::input name='password' label='Password' required='true' />
+                <x-bladewind::input name='password' label='Password' required='true' type='password' />
+                
             </div>
             <a href="#" class="flex justify-end text-blue-600 hover:underline mb-4">Forgot Password?</a>
             <x-bladewind::button class="w-full" can_submit='true'>Register</x-bladewind::button>
